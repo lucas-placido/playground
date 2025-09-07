@@ -213,6 +213,61 @@ db.users.createIndex({ email: 1 }, { unique: true })
 db.users.getIndexes()
 ```
 
+### Operadores Lógicos ($and, $or, $nor, $not)
+
+```javascript
+// $and: usuários ativos com idade entre 25 e 40
+db.users.find({
+  $and: [
+    { isActive: true },
+    { age: { $gte: 25, $lte: 40 } }
+  ]
+})
+
+// $or: produtos da categoria Electronics OU com preço abaixo de 100
+db.products.find({
+  $or: [
+    { category: "Electronics" },
+    { price: { $lt: 100 } }
+  ]
+})
+
+// $nor: posts que NÃO são da categoria "Tech" NEM possuem mais de 1000 views
+db.blog_posts.find({
+  $nor: [
+    { category: "Tech" },
+    { views: { $gt: 1000 } }
+  ]
+})
+
+// $not: usuários cuja cidade NÃO corresponde ao regex (ex.: não começa com "S")
+db.users.find({
+  city: { $not: /^S/i }
+})
+
+// Combinando $and com $in e $exists
+db.products.find({
+  $and: [
+    { category: { $in: ["Electronics", "Accessories"] } },
+    { stock: { $exists: true, $gt: 0 } }
+  ]
+})
+
+// Filtro composto: ($or) e depois projeção + ordenação
+db.users
+  .find(
+    {
+      $or: [
+        { tags: { $in: ["premium", "beta"] } },
+        { "preferences.newsletter": true }
+      ]
+    },
+    { name: 1, email: 1, city: 1, _id: 0 }
+  )
+  .sort({ name: 1 })
+  .limit(20)
+```
+
 ## 🛠️ Configurações
 
 - **MongoDB Port:** 27017
