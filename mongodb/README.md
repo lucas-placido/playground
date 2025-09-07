@@ -123,6 +123,96 @@ db.orders.aggregate([
 ])
 ```
 
+### Inserir um documento (insertOne)
+```javascript
+db.users.insertOne({
+  name: "Alice",
+  email: "alice@example.com",
+  isActive: true,
+  createdAt: new Date()
+})
+```
+
+### Inserir vários documentos (insertMany)
+```javascript
+db.products.insertMany([
+  { name: "Keyboard", category: "Electronics", price: 149.9, stock: 30 },
+  { name: "Mouse", category: "Electronics", price: 79.9, stock: 50 }
+])
+```
+
+### Atualizar um documento (updateOne)
+```javascript
+db.users.updateOne(
+  { email: "alice@example.com" },
+  { $set: { city: "São Paulo" }, $currentDate: { updatedAt: true } }
+)
+```
+
+### Atualizar vários documentos (updateMany)
+```javascript
+db.products.updateMany(
+  { category: "Electronics" },
+  { $inc: { price: 10 }, $currentDate: { updatedAt: true } }
+)
+```
+
+### Upsert (atualiza se existir, insere se não existir)
+```javascript
+db.users.updateOne(
+  { email: "bob@example.com" },
+  { $set: { name: "Bob", isActive: true }, $setOnInsert: { createdAt: new Date() } },
+  { upsert: true }
+)
+```
+
+### Deletar um documento (deleteOne)
+```javascript
+db.orders.deleteOne({ orderNumber: "ORD-1001" })
+```
+
+### Deletar vários documentos (deleteMany)
+```javascript
+db.blog_posts.deleteMany({ views: { $lt: 10 } })
+```
+
+### Listar bancos de dados
+```javascript
+show dbs
+```
+
+### Selecionar banco de dados
+```javascript
+use playground
+```
+
+### Listar coleções
+```javascript
+show collections
+```
+
+### Contar documentos
+```javascript
+db.users.countDocuments({ isActive: true })
+```
+
+### Projeção, ordenação e limite
+```javascript
+db.products
+  .find({}, { name: 1, price: 1, _id: 0 })
+  .sort({ price: -1 })
+  .limit(5)
+```
+
+### Índices úteis
+```javascript
+// Índice único por email
+db.users.createIndex({ email: 1 }, { unique: true })
+
+// Ver índices da coleção
+db.users.getIndexes()
+```
+
 ## 🛠️ Configurações
 
 - **MongoDB Port:** 27017
