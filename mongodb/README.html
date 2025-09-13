@@ -3463,6 +3463,58 @@ db.<span class="hljs-property">users</span>.<span class="hljs-title function_">c
 <span class="hljs-comment">// Ver índices da coleção</span>
 db.<span class="hljs-property">users</span>.<span class="hljs-title function_">getIndexes</span>()
 </code></pre>
+<h3 id="operadores-lógicos-and-or-nor-not">Operadores Lógicos ($and, $or, $nor, $not)</h3>
+<pre><code class="language-javascript"><span class="hljs-comment">// $and: usuários ativos com idade entre 25 e 40</span>
+db.<span class="hljs-property">users</span>.<span class="hljs-title function_">find</span>({
+  <span class="hljs-attr">$and</span>: [
+    { <span class="hljs-attr">isActive</span>: <span class="hljs-literal">true</span> },
+    { <span class="hljs-attr">age</span>: { <span class="hljs-attr">$gte</span>: <span class="hljs-number">25</span>, <span class="hljs-attr">$lte</span>: <span class="hljs-number">40</span> } }
+  ]
+})
+
+<span class="hljs-comment">// $or: produtos da categoria Electronics OU com preço abaixo de 100</span>
+db.<span class="hljs-property">products</span>.<span class="hljs-title function_">find</span>({
+  <span class="hljs-attr">$or</span>: [
+    { <span class="hljs-attr">category</span>: <span class="hljs-string">&quot;Electronics&quot;</span> },
+    { <span class="hljs-attr">price</span>: { <span class="hljs-attr">$lt</span>: <span class="hljs-number">100</span> } }
+  ]
+})
+
+<span class="hljs-comment">// $nor: posts que NÃO são da categoria &quot;Tech&quot; NEM possuem mais de 1000 views</span>
+db.<span class="hljs-property">blog_posts</span>.<span class="hljs-title function_">find</span>({
+  <span class="hljs-attr">$nor</span>: [
+    { <span class="hljs-attr">category</span>: <span class="hljs-string">&quot;Tech&quot;</span> },
+    { <span class="hljs-attr">views</span>: { <span class="hljs-attr">$gt</span>: <span class="hljs-number">1000</span> } }
+  ]
+})
+
+<span class="hljs-comment">// $not: usuários cuja cidade NÃO corresponde ao regex (ex.: não começa com &quot;S&quot;)</span>
+db.<span class="hljs-property">users</span>.<span class="hljs-title function_">find</span>({
+  <span class="hljs-attr">city</span>: { <span class="hljs-attr">$not</span>: <span class="hljs-regexp">/^S/i</span> }
+})
+
+<span class="hljs-comment">// Combinando $and com $in e $exists</span>
+db.<span class="hljs-property">products</span>.<span class="hljs-title function_">find</span>({
+  <span class="hljs-attr">$and</span>: [
+    { <span class="hljs-attr">category</span>: { <span class="hljs-attr">$in</span>: [<span class="hljs-string">&quot;Electronics&quot;</span>, <span class="hljs-string">&quot;Accessories&quot;</span>] } },
+    { <span class="hljs-attr">stock</span>: { <span class="hljs-attr">$exists</span>: <span class="hljs-literal">true</span>, <span class="hljs-attr">$gt</span>: <span class="hljs-number">0</span> } }
+  ]
+})
+
+<span class="hljs-comment">// Filtro composto: ($or) e depois projeção + ordenação</span>
+db.<span class="hljs-property">users</span>
+  .<span class="hljs-title function_">find</span>(
+    {
+      <span class="hljs-attr">$or</span>: [
+        { <span class="hljs-attr">tags</span>: { <span class="hljs-attr">$in</span>: [<span class="hljs-string">&quot;premium&quot;</span>, <span class="hljs-string">&quot;beta&quot;</span>] } },
+        { <span class="hljs-string">&quot;preferences.newsletter&quot;</span>: <span class="hljs-literal">true</span> }
+      ]
+    },
+    { <span class="hljs-attr">name</span>: <span class="hljs-number">1</span>, <span class="hljs-attr">email</span>: <span class="hljs-number">1</span>, <span class="hljs-attr">city</span>: <span class="hljs-number">1</span>, <span class="hljs-attr">_id</span>: <span class="hljs-number">0</span> }
+  )
+  .<span class="hljs-title function_">sort</span>({ <span class="hljs-attr">name</span>: <span class="hljs-number">1</span> })
+  .<span class="hljs-title function_">limit</span>(<span class="hljs-number">20</span>)
+</code></pre>
 <h2 id="️-configurações">🛠️ Configurações</h2>
 <ul>
 <li><strong>MongoDB Port:</strong> 27017</li>
