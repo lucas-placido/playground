@@ -24,7 +24,55 @@
             }
         },
         {
-            "name": "Posts - Com Cache",
+            "name": "Posts - Todos (Com Cache)",
+            "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                    "raw": "http://localhost:8000/posts?use_cache=true",
+                    "protocol": "http",
+                    "host": [
+                        "localhost"
+                    ],
+                    "port": "8000",
+                    "path": [
+                        "posts"
+                    ],
+                    "query": [
+                        {
+                            "key": "use_cache",
+                            "value": "true"
+                        }
+                    ]
+                }
+            }
+        },
+        {
+            "name": "Posts - Todos (Sem Cache)",
+            "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                    "raw": "http://localhost:8000/posts?use_cache=false",
+                    "protocol": "http",
+                    "host": [
+                        "localhost"
+                    ],
+                    "port": "8000",
+                    "path": [
+                        "posts"
+                    ],
+                    "query": [
+                        {
+                            "key": "use_cache",
+                            "value": "false"
+                        }
+                    ]
+                }
+            }
+        },
+        {
+            "name": "Posts - Por ID (Com Cache)",
             "request": {
                 "method": "GET",
                 "header": [],
@@ -74,7 +122,55 @@
             }
         },
         {
-            "name": "Usuários - Com Cache",
+            "name": "Usuários - Todos (Com Cache)",
+            "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                    "raw": "http://localhost:8000/users?use_cache=true",
+                    "protocol": "http",
+                    "host": [
+                        "localhost"
+                    ],
+                    "port": "8000",
+                    "path": [
+                        "users"
+                    ],
+                    "query": [
+                        {
+                            "key": "use_cache",
+                            "value": "true"
+                        }
+                    ]
+                }
+            }
+        },
+        {
+            "name": "Usuários - Todos (Sem Cache)",
+            "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                    "raw": "http://localhost:8000/users?use_cache=false",
+                    "protocol": "http",
+                    "host": [
+                        "localhost"
+                    ],
+                    "port": "8000",
+                    "path": [
+                        "users"
+                    ],
+                    "query": [
+                        {
+                            "key": "use_cache",
+                            "value": "false"
+                        }
+                    ]
+                }
+            }
+        },
+        {
+            "name": "Usuários - Por ID (Com Cache)",
             "request": {
                 "method": "GET",
                 "header": [],

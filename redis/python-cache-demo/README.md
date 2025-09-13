@@ -40,10 +40,15 @@ A API estará disponível em: http://localhost:8000
 ## 📊 Endpoints Disponíveis
 
 ### Dados da API Externa
+- `GET /posts` - Buscar todos os posts
 - `GET /posts/{post_id}` - Buscar post por ID
+- `GET /users` - Buscar todos os usuários
 - `GET /users/{user_id}` - Buscar usuário por ID  
+- `GET /comments` - Buscar todos os comentários
 - `GET /comments/{comment_id}` - Buscar comentário por ID
+- `GET /albums` - Buscar todos os álbuns
 - `GET /albums/{album_id}` - Buscar álbum por ID
+- `GET /todos` - Buscar todas as tarefas
 - `GET /todos/{todo_id}` - Buscar tarefa por ID
 
 ### Parâmetros de Cache
@@ -60,18 +65,30 @@ Todos os endpoints aceitam o parâmetro `use_cache`:
 
 ### 1. Teste com Cache (Primeira requisição)
 ```bash
+# Buscar todos os posts
+GET http://localhost:8000/posts?use_cache=true
+
+# Buscar post específico
 GET http://localhost:8000/posts/1?use_cache=true
 ```
 **Resultado esperado**: `"source": "api"`, tempo de resposta ~200-500ms
 
 ### 2. Teste com Cache (Segunda requisição)
 ```bash
+# Buscar todos os posts (do cache)
+GET http://localhost:8000/posts?use_cache=true
+
+# Buscar post específico (do cache)
 GET http://localhost:8000/posts/1?use_cache=true
 ```
 **Resultado esperado**: `"source": "cache"`, tempo de resposta ~1-5ms
 
 ### 3. Teste sem Cache
 ```bash
+# Buscar todos os posts (API direta)
+GET http://localhost:8000/posts?use_cache=false
+
+# Buscar post específico (API direta)
 GET http://localhost:8000/posts/1?use_cache=false
 ```
 **Resultado esperado**: `"source": "api"`, tempo de resposta ~200-500ms

@@ -58,14 +58,65 @@ async def root():
     return {
         "message": "Redis Cache Demo API",
         "endpoints": {
-            "posts": "/posts/{post_id}",
-            "users": "/users/{user_id}",
-            "comments": "/comments/{comment_id}",
-            "albums": "/albums/{album_id}",
-            "todos": "/todos/{todo_id}",
+            "posts": {"all": "/posts", "by_id": "/posts/{post_id}"},
+            "users": {"all": "/users", "by_id": "/users/{user_id}"},
+            "comments": {"all": "/comments", "by_id": "/comments/{comment_id}"},
+            "albums": {"all": "/albums", "by_id": "/albums/{album_id}"},
+            "todos": {"all": "/todos", "by_id": "/todos/{todo_id}"},
+            "cache": {
+                "stats": "/cache/stats",
+                "clear": "/cache/clear",
+                "clear_pattern": "/cache/clear/{pattern}",
+            },
         },
         "cache_info": {"enabled": True, "ttl": "300 segundos (5 minutos)"},
     }
+
+
+@app.get("/posts")
+async def get_all_posts(use_cache: bool = True):
+    """
+    Busca todos os posts
+    - use_cache=true: Usa cache Redis (padrão)
+    - use_cache=false: Requisição direta à API
+    """
+    cache_key = "posts:all"
+
+    if use_cache:
+        start_time = time.time()
+        cached_data = get_from_cache(cache_key)
+        cache_response_time = time.time() - start_time
+
+        if cached_data:
+            return {
+                "data": cached_data,
+                "source": "cache",
+                "cached": True,
+                "response_time_ms": round(cache_response_time * 1000, 2),
+                "timestamp": time.time(),
+            }
+
+    # Fazer requisição à API
+    start_time = time.time()
+    try:
+        api_data = make_api_request("/posts")
+        response_time = time.time() - start_time
+
+        # Salvar no cache se habilitado
+        if use_cache:
+            save_to_cache(cache_key, api_data, ttl=300)
+
+        return {
+            "data": api_data,
+            "source": "api",
+            "cached": False,
+            "response_time_ms": round(response_time * 1000, 2),
+            "timestamp": time.time(),
+        }
+    except HTTPException:
+        raise
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=f"Erro interno: {str(e)}")
 
 
 @app.get("/posts/{post_id}")
@@ -96,6 +147,52 @@ async def get_post(post_id: int, use_cache: bool = True):
     start_time = time.time()
     try:
         api_data = make_api_request(f"/posts/{post_id}")
+        response_time = time.time() - start_time
+
+        # Salvar no cache se habilitado
+        if use_cache:
+            save_to_cache(cache_key, api_data, ttl=300)
+
+        return {
+            "data": api_data,
+            "source": "api",
+            "cached": False,
+            "response_time_ms": round(response_time * 1000, 2),
+            "timestamp": time.time(),
+        }
+    except HTTPException:
+        raise
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=f"Erro interno: {str(e)}")
+
+
+@app.get("/users")
+async def get_all_users(use_cache: bool = True):
+    """
+    Busca todos os usuários
+    - use_cache=true: Usa cache Redis (padrão)
+    - use_cache=false: Requisição direta à API
+    """
+    cache_key = "users:all"
+
+    if use_cache:
+        start_time = time.time()
+        cached_data = get_from_cache(cache_key)
+        cache_response_time = time.time() - start_time
+
+        if cached_data:
+            return {
+                "data": cached_data,
+                "source": "cache",
+                "cached": True,
+                "response_time_ms": round(cache_response_time * 1000, 2),
+                "timestamp": time.time(),
+            }
+
+    # Fazer requisição à API
+    start_time = time.time()
+    try:
+        api_data = make_api_request("/users")
         response_time = time.time() - start_time
 
         # Salvar no cache se habilitado
@@ -155,6 +252,52 @@ async def get_user(user_id: int, use_cache: bool = True):
         raise HTTPException(status_code=500, detail=f"Erro interno: {str(e)}")
 
 
+@app.get("/comments")
+async def get_all_comments(use_cache: bool = True):
+    """
+    Busca todos os comentários
+    - use_cache=true: Usa cache Redis (padrão)
+    - use_cache=false: Requisição direta à API
+    """
+    cache_key = "comments:all"
+
+    if use_cache:
+        start_time = time.time()
+        cached_data = get_from_cache(cache_key)
+        cache_response_time = time.time() - start_time
+
+        if cached_data:
+            return {
+                "data": cached_data,
+                "source": "cache",
+                "cached": True,
+                "response_time_ms": round(cache_response_time * 1000, 2),
+                "timestamp": time.time(),
+            }
+
+    # Fazer requisição à API
+    start_time = time.time()
+    try:
+        api_data = make_api_request("/comments")
+        response_time = time.time() - start_time
+
+        # Salvar no cache se habilitado
+        if use_cache:
+            save_to_cache(cache_key, api_data, ttl=300)
+
+        return {
+            "data": api_data,
+            "source": "api",
+            "cached": False,
+            "response_time_ms": round(response_time * 1000, 2),
+            "timestamp": time.time(),
+        }
+    except HTTPException:
+        raise
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=f"Erro interno: {str(e)}")
+
+
 @app.get("/comments/{comment_id}")
 async def get_comment(comment_id: int, use_cache: bool = True):
     """Busca um comentário por ID"""
@@ -195,6 +338,52 @@ async def get_comment(comment_id: int, use_cache: bool = True):
         raise HTTPException(status_code=500, detail=f"Erro interno: {str(e)}")
 
 
+@app.get("/albums")
+async def get_all_albums(use_cache: bool = True):
+    """
+    Busca todos os álbuns
+    - use_cache=true: Usa cache Redis (padrão)
+    - use_cache=false: Requisição direta à API
+    """
+    cache_key = "albums:all"
+
+    if use_cache:
+        start_time = time.time()
+        cached_data = get_from_cache(cache_key)
+        cache_response_time = time.time() - start_time
+
+        if cached_data:
+            return {
+                "data": cached_data,
+                "source": "cache",
+                "cached": True,
+                "response_time_ms": round(cache_response_time * 1000, 2),
+                "timestamp": time.time(),
+            }
+
+    # Fazer requisição à API
+    start_time = time.time()
+    try:
+        api_data = make_api_request("/albums")
+        response_time = time.time() - start_time
+
+        # Salvar no cache se habilitado
+        if use_cache:
+            save_to_cache(cache_key, api_data, ttl=300)
+
+        return {
+            "data": api_data,
+            "source": "api",
+            "cached": False,
+            "response_time_ms": round(response_time * 1000, 2),
+            "timestamp": time.time(),
+        }
+    except HTTPException:
+        raise
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=f"Erro interno: {str(e)}")
+
+
 @app.get("/albums/{album_id}")
 async def get_album(album_id: int, use_cache: bool = True):
     """Busca um álbum por ID"""
@@ -219,6 +408,52 @@ async def get_album(album_id: int, use_cache: bool = True):
         api_data = make_api_request(f"/albums/{album_id}")
         response_time = time.time() - start_time
 
+        if use_cache:
+            save_to_cache(cache_key, api_data, ttl=300)
+
+        return {
+            "data": api_data,
+            "source": "api",
+            "cached": False,
+            "response_time_ms": round(response_time * 1000, 2),
+            "timestamp": time.time(),
+        }
+    except HTTPException:
+        raise
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=f"Erro interno: {str(e)}")
+
+
+@app.get("/todos")
+async def get_all_todos(use_cache: bool = True):
+    """
+    Busca todas as tarefas
+    - use_cache=true: Usa cache Redis (padrão)
+    - use_cache=false: Requisição direta à API
+    """
+    cache_key = "todos:all"
+
+    if use_cache:
+        start_time = time.time()
+        cached_data = get_from_cache(cache_key)
+        cache_response_time = time.time() - start_time
+
+        if cached_data:
+            return {
+                "data": cached_data,
+                "source": "cache",
+                "cached": True,
+                "response_time_ms": round(cache_response_time * 1000, 2),
+                "timestamp": time.time(),
+            }
+
+    # Fazer requisição à API
+    start_time = time.time()
+    try:
+        api_data = make_api_request("/todos")
+        response_time = time.time() - start_time
+
+        # Salvar no cache se habilitado
         if use_cache:
             save_to_cache(cache_key, api_data, ttl=300)
 
