@@ -1,0 +1,186 @@
+[
+    {
+        "id": 1,
+        "name": "Smartphone Galaxy S24",
+        "description": "Smartphone Android com tela de 6.2 polegadas, câmera de 50MP, 128GB de armazenamento e processador octa-core",
+        "brand": "Samsung",
+        "category": "eletrônicos",
+        "price": 2999.99,
+        "stock": 50,
+        "rating": 4.8,
+        "tags": [
+            "smartphone",
+            "android",
+            "samsung",
+            "celular"
+        ],
+        "specifications": {
+            "screen": "6.2 polegadas",
+            "camera": "50MP",
+            "storage": "128GB",
+            "ram": "8GB",
+            "battery": "4000mAh"
+        },
+        "variations": [
+            {
+                "color": "preto",
+                "stock": 30
+            },
+            {
+                "color": "branco",
+                "stock": 20
+            }
+        ],
+        "reviews": [
+            {
+                "user": "João",
+                "rating": 5,
+                "comment": "Excelente smartphone!"
+            },
+            {
+                "user": "Maria",
+                "rating": 4,
+                "comment": "Muito bom, mas poderia ser mais barato"
+            }
+        ]
+    },
+    {
+        "id": 2,
+        "name": "Notebook Dell Inspiron 15",
+        "description": "Notebook com processador Intel i7, 16GB RAM, SSD 512GB, tela Full HD 15.6 polegadas",
+        "brand": "Dell",
+        "category": "eletrônicos",
+        "price": 4599.99,
+        "stock": 25,
+        "rating": 4.6,
+        "tags": [
+            "notebook",
+            "dell",
+            "intel",
+            "computador"
+        ],
+        "specifications": {
+            "processor": "Intel i7",
+            "ram": "16GB",
+            "storage": "512GB SSD",
+            "screen": "15.6 polegadas Full HD"
+        },
+        "variations": [
+            {
+                "color": "prata",
+                "stock": 15
+            },
+            {
+                "color": "preto",
+                "stock": 10
+            }
+        ],
+        "reviews": [
+            {
+                "user": "Pedro",
+                "rating": 5,
+                "comment": "Perfeito para trabalho"
+            },
+            {
+                "user": "Ana",
+                "rating": 4,
+                "comment": "Boa qualidade, preço justo"
+            }
+        ]
+    },
+    {
+        "id": 3,
+        "name": "Tênis Nike Air Max",
+        "description": "Tênis esportivo com tecnologia Air Max, solado em borracha, ideal para corrida",
+        "brand": "Nike",
+        "category": "calçados",
+        "price": 399.99,
+        "stock": 100,
+        "rating": 4.7,
+        "tags": [
+            "tenis",
+            "nike",
+            "esporte",
+            "corrida"
+        ],
+        "specifications": {
+            "size": "36-45",
+            "material": "Mesh e couro sintético",
+            "sole": "Borracha Air Max"
+        },
+        "variations": [
+            {
+                "color": "preto",
+                "size": "36-45",
+                "stock": 60
+            },
+            {
+                "color": "branco",
+                "size": "36-45",
+                "stock": 40
+            }
+        ],
+        "reviews": [
+            {
+                "user": "Carlos",
+                "rating": 5,
+                "comment": "Muito confortável"
+            },
+            {
+                "user": "Lucia",
+                "rating": 4,
+                "comment": "Boa qualidade"
+            }
+        ]
+    },
+    {
+        "id": 4,
+        "name": "Camiseta Básica Algodão",
+        "description": "Camiseta 100% algodão, corte clássico, disponível em várias cores",
+        "brand": "Marca Própria",
+        "category": "roupas",
+        "price": 29.99,
+        "stock": 200,
+        "rating": 4.3,
+        "tags": [
+            "camiseta",
+            "algodao",
+            "basica",
+            "roupa"
+        ],
+        "specifications": {
+            "material": "100% algodão",
+            "size": "P, M, G, GG",
+            "care": "Lavar a máquina"
+        },
+        "variations": [
+            {
+                "color": "branco",
+                "size": "P-GG",
+                "stock": 80
+            },
+            {
+                "color": "preto",
+                "size": "P-GG",
+                "stock": 80
+            },
+            {
+                "color": "azul",
+                "size": "P-GG",
+                "stock": 40
+            }
+        ],
+        "reviews": [
+            {
+                "user": "Roberto",
+                "rating": 4,
+                "comment": "Boa qualidade"
+            },
+            {
+                "user": "Sandra",
+                "rating": 5,
+                "comment": "Excelente custo-benefício"
+            }
+        ]
+    }
+]

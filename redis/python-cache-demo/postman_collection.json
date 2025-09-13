@@ -1,0 +1,335 @@
+{
+    "info": {
+        "name": "Redis Cache Demo API",
+        "description": "Coleção de requisições para testar cache Redis vs API direta",
+        "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+    },
+    "item": [
+        {
+            "name": "Informações da API",
+            "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                    "raw": "http://localhost:8000/",
+                    "protocol": "http",
+                    "host": [
+                        "localhost"
+                    ],
+                    "port": "8000",
+                    "path": [
+                        ""
+                    ]
+                }
+            }
+        },
+        {
+            "name": "Posts - Com Cache",
+            "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                    "raw": "http://localhost:8000/posts/1?use_cache=true",
+                    "protocol": "http",
+                    "host": [
+                        "localhost"
+                    ],
+                    "port": "8000",
+                    "path": [
+                        "posts",
+                        "1"
+                    ],
+                    "query": [
+                        {
+                            "key": "use_cache",
+                            "value": "true"
+                        }
+                    ]
+                }
+            }
+        },
+        {
+            "name": "Posts - Sem Cache",
+            "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                    "raw": "http://localhost:8000/posts/1?use_cache=false",
+                    "protocol": "http",
+                    "host": [
+                        "localhost"
+                    ],
+                    "port": "8000",
+                    "path": [
+                        "posts",
+                        "1"
+                    ],
+                    "query": [
+                        {
+                            "key": "use_cache",
+                            "value": "false"
+                        }
+                    ]
+                }
+            }
+        },
+        {
+            "name": "Usuários - Com Cache",
+            "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                    "raw": "http://localhost:8000/users/1?use_cache=true",
+                    "protocol": "http",
+                    "host": [
+                        "localhost"
+                    ],
+                    "port": "8000",
+                    "path": [
+                        "users",
+                        "1"
+                    ],
+                    "query": [
+                        {
+                            "key": "use_cache",
+                            "value": "true"
+                        }
+                    ]
+                }
+            }
+        },
+        {
+            "name": "Usuários - Sem Cache",
+            "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                    "raw": "http://localhost:8000/users/1?use_cache=false",
+                    "protocol": "http",
+                    "host": [
+                        "localhost"
+                    ],
+                    "port": "8000",
+                    "path": [
+                        "users",
+                        "1"
+                    ],
+                    "query": [
+                        {
+                            "key": "use_cache",
+                            "value": "false"
+                        }
+                    ]
+                }
+            }
+        },
+        {
+            "name": "Comentários - Com Cache",
+            "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                    "raw": "http://localhost:8000/comments/1?use_cache=true",
+                    "protocol": "http",
+                    "host": [
+                        "localhost"
+                    ],
+                    "port": "8000",
+                    "path": [
+                        "comments",
+                        "1"
+                    ],
+                    "query": [
+                        {
+                            "key": "use_cache",
+                            "value": "true"
+                        }
+                    ]
+                }
+            }
+        },
+        {
+            "name": "Comentários - Sem Cache",
+            "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                    "raw": "http://localhost:8000/comments/1?use_cache=false",
+                    "protocol": "http",
+                    "host": [
+                        "localhost"
+                    ],
+                    "port": "8000",
+                    "path": [
+                        "comments",
+                        "1"
+                    ],
+                    "query": [
+                        {
+                            "key": "use_cache",
+                            "value": "false"
+                        }
+                    ]
+                }
+            }
+        },
+        {
+            "name": "Álbuns - Com Cache",
+            "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                    "raw": "http://localhost:8000/albums/1?use_cache=true",
+                    "protocol": "http",
+                    "host": [
+                        "localhost"
+                    ],
+                    "port": "8000",
+                    "path": [
+                        "albums",
+                        "1"
+                    ],
+                    "query": [
+                        {
+                            "key": "use_cache",
+                            "value": "true"
+                        }
+                    ]
+                }
+            }
+        },
+        {
+            "name": "Álbuns - Sem Cache",
+            "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                    "raw": "http://localhost:8000/albums/1?use_cache=false",
+                    "protocol": "http",
+                    "host": [
+                        "localhost"
+                    ],
+                    "port": "8000",
+                    "path": [
+                        "albums",
+                        "1"
+                    ],
+                    "query": [
+                        {
+                            "key": "use_cache",
+                            "value": "false"
+                        }
+                    ]
+                }
+            }
+        },
+        {
+            "name": "Tarefas - Com Cache",
+            "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                    "raw": "http://localhost:8000/todos/1?use_cache=true",
+                    "protocol": "http",
+                    "host": [
+                        "localhost"
+                    ],
+                    "port": "8000",
+                    "path": [
+                        "todos",
+                        "1"
+                    ],
+                    "query": [
+                        {
+                            "key": "use_cache",
+                            "value": "true"
+                        }
+                    ]
+                }
+            }
+        },
+        {
+            "name": "Tarefas - Sem Cache",
+            "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                    "raw": "http://localhost:8000/todos/1?use_cache=false",
+                    "protocol": "http",
+                    "host": [
+                        "localhost"
+                    ],
+                    "port": "8000",
+                    "path": [
+                        "todos",
+                        "1"
+                    ],
+                    "query": [
+                        {
+                            "key": "use_cache",
+                            "value": "false"
+                        }
+                    ]
+                }
+            }
+        },
+        {
+            "name": "Estatísticas do Cache",
+            "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                    "raw": "http://localhost:8000/cache/stats",
+                    "protocol": "http",
+                    "host": [
+                        "localhost"
+                    ],
+                    "port": "8000",
+                    "path": [
+                        "cache",
+                        "stats"
+                    ]
+                }
+            }
+        },
+        {
+            "name": "Limpar Todo o Cache",
+            "request": {
+                "method": "DELETE",
+                "header": [],
+                "url": {
+                    "raw": "http://localhost:8000/cache/clear",
+                    "protocol": "http",
+                    "host": [
+                        "localhost"
+                    ],
+                    "port": "8000",
+                    "path": [
+                        "cache",
+                        "clear"
+                    ]
+                }
+            }
+        },
+        {
+            "name": "Limpar Cache de Posts",
+            "request": {
+                "method": "DELETE",
+                "header": [],
+                "url": {
+                    "raw": "http://localhost:8000/cache/clear/post",
+                    "protocol": "http",
+                    "host": [
+                        "localhost"
+                    ],
+                    "port": "8000",
+                    "path": [
+                        "cache",
+                        "clear",
+                        "post"
+                    ]
+                }
+            }
+        }
+    ]
+}
